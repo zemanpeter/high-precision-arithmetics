@@ -22,9 +22,16 @@ class hp_int {
   std::vector<usint> digits;
 public:
   hp_int();
+  hp_int(std::string);
   void set_base(usint);
   void from_string(std::string);
   std::string to_string();
+  bool operator<(hp_int);
+  bool operator>(hp_int);
+  bool operator<=(hp_int);
+  bool operator>=(hp_int);
+  bool operator!=(hp_int);
+  bool operator==(hp_int);
   hp_int operator+(hp_int);
   hp_int operator-(hp_int);
   hp_int operator*(hp_int);
