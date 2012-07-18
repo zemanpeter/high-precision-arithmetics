@@ -11,9 +11,15 @@ bool hp_int::operator<(const hp_int& rhs) const
     return false;
 
   if (digits.size() < rhs.digits.size())
-    return true;
+    if (sign == positive)
+      return true;
+    else
+      return false;
   else if (digits.size() > rhs.digits.size())
-    return false;
+    if (sign == positive)
+      return false;
+    else
+      return true;
 
   int i = digits.size() - 1;
 
@@ -23,7 +29,10 @@ bool hp_int::operator<(const hp_int& rhs) const
   if (i == -1)
     return false;
   else
-    return digits[i] < rhs.digits[i];
+    if (sign == positive)
+      return digits[i] < rhs.digits[i];
+    else
+      return digits[i] > rhs.digits[i];
 }
 
 bool hp_int::operator>(const hp_int& rhs) const
@@ -39,9 +48,15 @@ bool hp_int::operator<=(const hp_int& rhs) const
     return false;
 
   if (digits.size() < rhs.digits.size())
-    return true;
+    if (sign == positive)
+      return true;
+    else
+      return false;
   else if (digits.size() > rhs.digits.size())
-    return false;
+    if (sign == positive)
+      return false;
+    else
+      return true;
 
   int i = digits.size() - 1;
 
@@ -51,7 +66,10 @@ bool hp_int::operator<=(const hp_int& rhs) const
   if (i == -1)
     return true;
   else
-    return digits[i] < rhs.digits[i];
+    if (sign == positive)
+      return digits[i] < rhs.digits[i];
+    else
+      return digits[i] > rhs.digits[i];
 }
 
 bool hp_int::operator>=(const hp_int& rhs) const
@@ -69,6 +87,9 @@ bool hp_int::operator==(const hp_int& rhs) const
   if (sign != rhs.sign)
     return false;
 
+  if (sign == 0)
+    return true;
+
   if (digits.size() != rhs.digits.size())
     return false;
 
@@ -76,9 +97,9 @@ bool hp_int::operator==(const hp_int& rhs) const
 
   while (i < digits.size())
     if (digits[i] != rhs.digits[i++])
-      break;
+      return false;
 
-  return i == digits.size();
+  return true;
 }
 
 }
