@@ -1,7 +1,7 @@
+#include <iostream>
 #include <limits>
 #include <string>
 #include <vector>
-#include <iostream>
 using namespace std;
 
 #include "hpa.h"
@@ -126,7 +126,7 @@ string hp_int::to_string()
 
     usint digit = (usint) carry;
 
-    // Append the digit to the string
+    // Append the'/usr/share/applications/skype.desktop'  digit to the string
     if (0 <= digit && digit <= 9)
       rs.push_back('0' + digit);
     else
@@ -138,6 +138,26 @@ string hp_int::to_string()
 
   // Return it reversed
   return string(rs.rbegin(), rs.rend());
+}
+
+ostream& operator<<(ostream& os, hp_int& hi)
+{
+  string s;
+  s = hi.to_string();
+
+  os << s;
+
+  return os;
+}
+
+istream& operator>>(istream& is, hp_int& hi)
+{
+  string s;
+
+  is >> s;
+  hi.from_string(s);
+
+  return is;
 }
 
 }

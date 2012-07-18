@@ -1,6 +1,7 @@
 #ifndef _HPA
 #define _HPA
 
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -26,12 +27,14 @@ public:
   void set_base(usint);
   void from_string(std::string);
   std::string to_string();
-  bool operator<(hp_int);
-  bool operator>(hp_int);
-  bool operator<=(hp_int);
-  bool operator>=(hp_int);
-  bool operator!=(hp_int);
-  bool operator==(hp_int);
+  friend std::ostream& operator<<(std::ostream& os, hp_int& hi);
+  friend std::istream& operator>>(std::istream& is, hp_int& hi);
+  bool operator<(const hp_int&) const;
+  bool operator>(const hp_int&) const;
+  bool operator<=(const hp_int&) const;
+  bool operator>=(const hp_int&) const;
+  bool operator!=(const hp_int&) const;
+  bool operator==(const hp_int&) const;
   hp_int operator+(hp_int);
   hp_int operator-(hp_int);
   hp_int operator*(hp_int);

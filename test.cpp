@@ -10,10 +10,7 @@ using namespace hpa;
 int main()
 {
   hp_int a;
-  string s;
-  cin >> s;
-  a.from_string(s);
-  s = a.to_string();
-  cout << s << endl;
+  cin >> a;
+  cout << a << endl;
   return 0;
 }
