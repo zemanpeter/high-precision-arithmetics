@@ -1,15 +1,9 @@
-#include <iostream>
-#include <limits>
-#include <string>
-#include <vector>
-using namespace std;
-
 #include "hpa.h"
+
+using namespace std;
 
 namespace hpa
 {
-
-const usint USINT_MAX = numeric_limits<usint>::max();
 
 hp_int::hp_int()
 {
@@ -158,6 +152,16 @@ istream& operator>>(istream& is, hp_int& hi)
   hi.from_string(s);
 
   return is;
+}
+
+hp_int& hp_int::operator=(const hp_int& rhs)
+{
+  if (this != &rhs) {
+    sign = rhs.sign;
+    digits = rhs.digits;
+  }
+
+  return *this;
 }
 
 }
