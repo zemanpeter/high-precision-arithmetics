@@ -1,41 +1,32 @@
-#include "hpa.h"
+#include "hp_uint.h"
 
 using namespace std;
 
 namespace hpa
 {
 
-hp_int::hp_int()
+hp_uint::hp_uint()
 {
   base = 10;
-  sign = zero;
   digits.push_back(0);
 }
 
-hp_int::hp_int(string s)
+hp_uint::hp_uint(string s)
 {
   base = 10;
   this->from_string(s);
 }
 
-void hp_int::set_base(usint b)
+void hp_uint::set_base(usint b)
 {
   if (2 <= b && b <= 36)
     base = b;
 }
 
-void hp_int::from_string(string s)
+void hp_uint::from_string(string s)
 {
   // Clear current digits
   digits.clear();
-
-  // Set sign
-  if (s[0] == '-') {
-    sign = negative;
-    s.erase(s.begin());
-  }
-  else
-    sign = positive;
 
   // Ingnore trailing zeroes
   int i = 0;
@@ -44,7 +35,6 @@ void hp_int::from_string(string s)
     i++;
   if (i == s.size()) {
     // The number is zero
-    sign = zero;
     digits.push_back(0);
     return;
   }
@@ -93,17 +83,15 @@ void hp_int::from_string(string s)
   }
 }
 
-string hp_int::to_string()
+string hp_uint::to_string()
 {
-  if (sign == zero)
-    // The number is zero
+  if (digits[0] == 0 && digits.size() == 1)
     return "0";
 
   string rs;
   vector<usint> digits_copy = digits;
 
   // Process the number
-  int a = 1;
   while (!(digits_copy[0] == 0 && digits_copy.size() == 1)) {
     ulint carry = 0;
 
@@ -127,39 +115,34 @@ string hp_int::to_string()
       rs.push_back('a' + digit - 10);
   }
 
-  if (sign == negative)
-    rs.push_back('-');
-
   // Return it reversed
   return string(rs.rbegin(), rs.rend());
 }
 
-ostream& operator<<(ostream& os, hp_int& hi)
+ostream& operator<<(ostream& os, const hp_uint& rhs)
 {
   string s;
-  s = hi.to_string();
-
+  
+  s = rhs.to_string();
   os << s;
 
   return os;
 }
 
-istream& operator>>(istream& is, hp_int& hi)
+istream& operator>>(istream& is, hp_uint& rhs)
 {
   string s;
 
   is >> s;
-  hi.from_string(s);
+  rhs.from_string(s);
 
   return is;
 }
 
-hp_int& hp_int::operator=(const hp_int& rhs)
+hp_uint& hp_uint::operator=(const hp_uint& rhs)
 {
-  if (this != &rhs) {
-    sign = rhs.sign;
+  if (this != &rhs)
     digits = rhs.digits;
-  }
 
   return *this;
 }

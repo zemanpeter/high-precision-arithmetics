@@ -1,5 +1,5 @@
 program=test
-OBJ=hp_int_manip.o hp_int_cmp.o test.o
+OBJ=hp_uint_manip.o hp_uint_cmp.cpp hp_uint_as.cpp test.o
 .PHONY: build
 .PHONY: clean
 
@@ -11,11 +11,14 @@ clean:
 $(program): $(OBJ)
 	g++ -g $(OBJ) -o $(program)
 
-hp_int_manip.o: hp_int_manip.cpp
-	g++ -g -c hp_int_manip.cpp
+hp_uint_manip.o: hp_uint_manip.cpp
+	g++ -g -c -fpermissive hp_uint_manip.cpp
 
-hp_int_cmp.o: hp_int_cmp.cpp
-	g++ -g -c hp_int_cmp.cpp
+hp_uint_cmp.o: hp_uint_cmp.cpp
+	g++ -g -c hp_uint_cmp.cpp
 
-test.o: test.cpp hpa.h
+hp_uint_as.o: hp_uint_as.cpp
+	g++ -g -c hp_uint_as.cpp
+
+test.o: test.cpp hp_uint.h
 	g++ -g -c test.cpp
