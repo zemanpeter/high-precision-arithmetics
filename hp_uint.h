@@ -19,6 +19,9 @@ class hp_uint {
   usint base; // The base in which the output is displayed the input expected
   std::vector<usint> digits; // Digits internally stored in base 2^sizeof(usint)
 
+  // Multiplication algorithms
+  hp_uint& grade_school(hp_uint&, const hp_uint&);
+
 public:
 
   // Default constructor
