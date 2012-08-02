@@ -20,7 +20,7 @@ class hp_uint {
   std::vector<usint> digits; // Digits internally stored in base 2^sizeof(usint)
 
   // Multiplication algorithms
-  hp_uint& grade_school(hp_uint&, const hp_uint&);
+  void grade_school(hp_uint&, const hp_uint&, const hp_uint&);
 
 public:
 

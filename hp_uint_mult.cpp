@@ -6,47 +6,37 @@ using namespace std;
 namespace hpa
 {
 
-hp_uint& hp_uint::grade_school(hp_uint& a, const hp_uint& b)
+void hp_uint::grade_school(hp_uint& x, const hp_uint& a, const hp_uint& b)
 {
-  hp_uint *ap, *bp;
-
-  if (a.digits.size() >= b.digits.size()) {
-    ap = &a;
-    bp = &b;
-  }
-  else {
-    ap = &b;
-    bp = &a;
-  }
-
-  vector<hp_uint> rows(bp->digits.size());
-
-  for (int i = 0; i < bp->digits.size(); i++) {
-    ulint tmp, carry = 0;
+  for (int i = 0; i < b.digits.size(); i++) {
+    hp_uint row;
+    ulint carry = 0, tmp;
     for (int j = 0; j < i; j++)
-      rows[i].digits.push_back(0);
-    for (int j = 0; j < ap->digits.size(); j++) {
-      tmp = ((ulint) ap->digits[j]) * ((ulint) bp->digits[i]) + carry;
+      row.digits.push_back(0);
+    for (int j = 0; j < a.digits.size(); j++) {
+      tmp = ((ulint) a.digits[j]) * ((ulint) b.digits[i]) + carry;
       carry = (ulint) tmp/(USINT_MAX + 1);
-      rows[i].digits[j+i] = (usint) tmp % (USINT_MAX + 1);
-      rows[i].digits.push_back(0);
+      row.digits[j+i] = (usint) tmp % (USINT_MAX + 1);
+      row.digits.push_back(0);
     }
-    int last = rows[i].digits.size() - 1;
-    rows[i].digits[last] = carry;
-    for (int k = last; rows[i].digits[k] == 0 && k > 0; k--)
-      rows[i].digits.pop_back();
+    int last = row.digits.size() - 1;
+    row.digits[last] = carry;
+    for (int k = last; row.digits[k] == 0 && k > 0; k--)
+      row.digits.pop_back();
+    x += row;
   }
-
-  for (int i = 1; i < rows.size(); i++)
-    rows[i] += rows[i-1];
-  a = rows[rows.size() - 1];
-
-  return a;
 }
 
 hp_uint& hp_uint::operator*=(const hp_uint& rhs)
 {
-  grade_school(*this, rhs);
+  hp_uint x;
+
+  if (digits.size() >= rhs.digits.size())
+    grade_school(x, *this, rhs);
+  else
+    grade_school(x, rhs, *this);
+
+  *this = x;
 
   return *this;
 }
