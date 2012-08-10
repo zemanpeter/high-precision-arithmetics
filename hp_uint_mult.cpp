@@ -33,9 +33,10 @@ hp_uint hp_uint::karatsuba(const hp_uint& a, const hp_uint& b)
   int m = b.digits.size();
   int maxnm = max(n, m);
 
-  if (maxnm < 10) {
+  if (maxnm < 50) {
     hp_uint p;
-    grade_school(p, a, b);
+    if (a.digits.size() >= b.digits.size()) grade_school(p, a, b);
+    else grade_school(p, b, a);
     return p;
   }
 
