@@ -21,6 +21,7 @@ class hp_uint {
 
   // Multiplication algorithms
   void grade_school(hp_uint&, const hp_uint&, const hp_uint&);
+  hp_uint karatsuba(const hp_uint&, const hp_uint&);
 
 public:
 
