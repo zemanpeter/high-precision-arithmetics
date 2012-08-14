@@ -6,10 +6,8 @@ using namespace hpa;
 
 int main()
 {
-  hp_int a, b;
-  while (cin >> a >> b) {
-    if (b != hp_int("0"))
-      cout << (a^b) << endl;
-  }
+  hp_int a;
+  while (cin >> a)
+    cout << a << endl;
   return 0;
 }
