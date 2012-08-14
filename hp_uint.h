@@ -1,6 +1,3 @@
-#ifndef _HP_UINT
-#define _HP_UINT
-
 #include <iostream>
 #include <limits>
 #include <string>
@@ -19,11 +16,14 @@ class hp_uint {
   usint base; // The base in which the output is displayed the input expected
   std::vector<usint> digits; // Digits internally stored in base 2^sizeof(usint)
 
-  // Multiplication algorithms
+  //void divide_by_two();
   void grade_school(hp_uint&, const hp_uint&, const hp_uint&);
   hp_uint karatsuba(const hp_uint&, const hp_uint&);
+  hp_uint exp(hp_uint&, hp_uint&);
+  void div_and_mod(hp_uint &q, hp_uint& r, const hp_uint& a, const hp_uint& b);
 
 public:
+  void divide_by_two();
 
   // Default constructor
   hp_uint();
@@ -73,5 +73,3 @@ public:
 };
 
 }
-
-#endif
