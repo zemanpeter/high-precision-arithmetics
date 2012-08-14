@@ -20,7 +20,7 @@ class hp_uint {
   void grade_school(hp_uint&, const hp_uint&, const hp_uint&);
   hp_uint karatsuba(const hp_uint&, const hp_uint&);
   hp_uint exp(hp_uint&, hp_uint&);
-  void div_and_mod(hp_uint &q, hp_uint& r, const hp_uint& a, const hp_uint& b);
+  void div_and_mod(hp_uint&, hp_uint&, const hp_uint&, const hp_uint&);
 
 public:
   // Default constructor
