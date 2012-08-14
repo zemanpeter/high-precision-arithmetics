@@ -147,4 +147,20 @@ hp_uint& hp_uint::operator=(const hp_uint& rhs)
   return *this;
 }
 
+bool hp_uint::is_even()
+{
+  if (digits[0] % 2 == 0)
+    return true;
+  else
+    return false;
+}
+
+bool hp_uint::is_zero()
+{
+  if (digits.size() == 1 && digits[0] == 0)
+    return true;
+  else
+    return false;
+}
+
 }

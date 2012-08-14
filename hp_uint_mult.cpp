@@ -60,8 +60,8 @@ hp_uint hp_uint::karatsuba(const hp_uint& a, const hp_uint& b)
   hp_uint t1 = p3 - p1 - p2;
 
   for (int i = 0; i < ((int) maxnm/2)*2; i++) {
-    if (i < ((int) maxnm/2)) t1.digits.push_back(0);
-    p1.digits.push_back(0);
+    if (i < ((int) maxnm/2) && t1 != hp_uint("0")) t1.digits.push_back(0);
+    if (p1 != hp_uint("0")) p1.digits.push_back(0);
   }
   for (int i = p1.digits.size() - 1; i >= 0; i--)
     if (i-((int) (maxnm/2))*2 >= 0) p1.digits[i] = p1.digits[i-((int) (maxnm/2))*2];

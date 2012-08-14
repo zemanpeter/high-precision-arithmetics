@@ -37,6 +37,12 @@ public:
 
   // Creates a std::string from hp_uint
   std::string to_string();
+  
+  // Returns true if the number is even
+  bool is_even();
+
+  // Returns true if the number is zero
+  bool is_zero();
 
   // Functions for I/O
   friend std::ostream& operator<<(std::ostream&, const hp_uint&);

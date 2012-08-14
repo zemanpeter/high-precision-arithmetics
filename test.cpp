@@ -1,17 +1,15 @@
 #include <iostream>
-#include <vector>
+#include "hpa.h"
 
 using namespace std;
-
-#include "hp_uint.h"
-
 using namespace hpa;
 
 int main()
 {
-  hp_uint a, b;
+  hp_int a, b;
   while (cin >> a >> b) {
-    cout << a * b << endl; 
+    if (b != hp_int("0"))
+      cout << (a^b) << endl;
   }
   return 0;
 }
