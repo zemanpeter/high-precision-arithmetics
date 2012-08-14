@@ -23,8 +23,6 @@ class hp_uint {
   void div_and_mod(hp_uint &q, hp_uint& r, const hp_uint& a, const hp_uint& b);
 
 public:
-  void divide_by_two();
-
   // Default constructor
   hp_uint();
 
