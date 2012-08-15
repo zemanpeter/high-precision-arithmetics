@@ -1,4 +1,4 @@
-all: doc_usr.pdf
+all: doc_usr.pdf doc_prog.pdf
 
 doc_usr.pdf: doc_usr.tex
 	pdfcslatex doc_usr.tex
