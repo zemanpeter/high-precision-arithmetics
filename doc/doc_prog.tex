@@ -1,0 +1,56 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{verbatim}
+\usepackage{a4wide}
+\title{\bf Dokumentácia ku knižnici \texttt{hpa}}
+\date{\bf\today}
+\author{\bf Peter Zeman}
+\begin{document}
+\maketitle
+
+Knižnica {\tt hpa} implementuje sčitovanie, odčitovanie, násobenie, delenie a
+mocnenie celých čísel, je naprogramovaná v {\tt C++}, je využité preťažovanie
+operátorov.
+
+Typ {\tt hp\_int} je definováný takto:
+
+\begin{verbatim}
+
+class hp_uint {
+  usint base;
+  vector<usint> digits
+public:
+  // verejne metody
+};
+
+class hp_int {
+  sign_t sing;
+  hp_uint absv;
+public:
+  // verejne metody, ktore zahrnaju operatory
+};
+\end{verbatim}
+
+Typ {\tt hp\_int} pracuje s číslom v sústave so základom $2^{16}$. Všetky
+algoritmy sú implementované pre {\tt hp\_uint} a {\tt hp\_int} doplňuje prácu
+so znamienkom.
+
+Pre sčitovanie a odčitovanie sú použité klasické algoritmy. Pre delenie
+knižnica využíva rekurzívny algoritmus z [2], pre násobenie je implemenotvaný
+základný a Karatsubov algoritmus. Na mocnenie je použité zrýchlenie pomocou
+polenia intervalov.
+
+\begin{thebibliography}{9}
+	\bibitem{knuth}{\em Donald E. Knuth:}
+	       {\bf The Art of Computer Programming, Volume II: Seminumerical
+	       algorithms}\\
+	       Addison-Wesley
+	       1998
+        \bibitem{algo}{\em S. Dasgupta, C. H. Papadimitriou, U. V. Vazirani:}
+		{\bf Algorithms}\\
+		2006
+\end{thebibliography}
+
+\end{document}
