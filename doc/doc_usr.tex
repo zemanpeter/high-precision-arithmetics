@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[slovak]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[IL2]{fontenc}
+\usepackage{verbatim}
+\usepackage{a4wide}
+\title{\bf Dokumentácia ku knižnici \texttt{hpa}}
+\date{\bf\today}
+\author{\bf Peter Zeman}
+\begin{document}
+\maketitle
+
+Knižnica {\tt hpa} implementuje sčitovanie, odčitovanie, násobenie, delenie a
+mocnenie celých čísel, je naprogramovaná v {\tt C++}, je využité preťažovanie
+operátorov.
+
+\subsection*{Použitie}
+
+Na začiatku každého zdrojového súboru je treba uviesť
+
+\begin{verbatim}
+#include "hpa.h"
+using namespace hpa;
+\end{verbatim}
+
+\noindent Príkazom
+
+\begin{verbatim}
+hp_int a;
+\end{verbatim}
+
+\noindent je možné deklarovať premennú {\tt a} typu {\tt hp\_int}. V tomto
+prípade bude {\tt a} rovné nule. Premennú je možné inicializovať príkazom
+
+\begin{verbatim}
+hp_int a("123456789");
+\end{verbatim}
+
+\noindent ktorý iniclializje {\tt a} zo {\tt std::string}u.
+
+\noindent Je možné použiť relačné operátory {\tt ==}, {\tt !=}, {\tt <}, {\tt
+>}, {\tt <=} {\tt >=}, aritmetické operátory {\tt +}, {\tt -}, {\tt *}, {\tt
+/}, {\tt \%}, {\tt \textasciicircum} (tento operátor slúži na mocnenie, pozor kôli priorite
+je nutné ho uzátvorkovať, teda správny výraz je {\tt (a\textasciicircum b)} a
+nie {\tt a\textasciicircum b})
+a knim prislúchajúce priraďovacie operátory {\tt +=}, {\tt -=}, {\tt *=}, {\tt
+/=}, {\tt \%=}, {\tt \textasciicircum=}.
+
+\noindent Pre vstup a výstup je možné použiť operátory {\tt >>} a {\tt <<}:
+
+\begin{verbatim}
+hp_uint a("123442348729837409213470123");
+cout << a;
+hp_uint b;
+cin >> b;
+\end{verbatim}
+
+\noindent Príkaz
+
+\begin{verbatim}
+a.set_base(b);
+\end{verbatim}
+
+\noindent prestaví sústavu, v ktorej bude očakávaný vstup a v ktore bude
+zapísaný výstup.
+
+\end{document}
